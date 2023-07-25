@@ -1,6 +1,6 @@
-# Project 🚀
+# NodeJS Project 🚀
 
-Um projeto FullStack para criar e gerenciar uma API RESTful de usuários. A API permite realizar operações CRUD (Create, Read, Update, Delete) em usuários e utiliza as seguintes tecnologias:
+Um projeto Backend para criar e gerenciar uma API RESTful de usuários. A API permite realizar operações CRUD (Create, Read, Update, Delete) em usuários e utiliza as seguintes tecnologias:
 
 - ![Node.js](https://img.shields.io/badge/Node.js-14.x-green.svg) - Ambiente de execução do JavaScript no servidor.
 - ![Express.js](https://img.shields.io/badge/Express.js-4.x-orange.svg) - Framework web rápido e minimalista para Node.js.
