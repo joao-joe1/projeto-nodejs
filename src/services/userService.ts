@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client"
-import { Response } from "express";
 
 interface InterfaceUserRequest {
     name: string,
@@ -13,7 +12,7 @@ class CreateUserService {
 
     async isEmailAlreadyRegistered({ name, email, admin }: InterfaceUserRequest) {
         if (!email) {
-            throw new Error("Email não existente.")
+            throw new Error("Email incorreto.")
         }
 
         const userAlreadyExists = await prisma.users.findFirst({
