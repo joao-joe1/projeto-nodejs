@@ -10,7 +10,7 @@ const prisma = new PrismaClient()
 
 class CreateUserService {
 
-    async isEmailAlreadyRegistered({ name, email, admin }: InterfaceUserRequest) {
+    async execute({ name, email, admin }: InterfaceUserRequest) {
         if (!email) {
             throw new Error("Email incorreto.")
         }
@@ -25,7 +25,7 @@ class CreateUserService {
             throw new Error("Email já cadastrado.")
         }
 
-        const user = await prisma.users.create({
+        const createUser = await prisma.users.create({
             data: { // Definir as informações do usuário que serão criadas no banco de dados.
                 name,
                 email,
@@ -33,7 +33,7 @@ class CreateUserService {
             }
         })
 
-        return user
+        return createUser
     }
 }
 
