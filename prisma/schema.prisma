@@ -11,13 +11,15 @@ datasource db {
 }
 
 model Users {
-  id         String   @id @default(uuid())
-  name       String
-  email      String   @unique
-  password   String
-  admin      Boolean  @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  id                  String        @id @default(uuid())
+  name                String
+  email               String        @unique
+  password            String
+  admin               Boolean       @default(false)
+  created_at          DateTime      @default(now())
+  updated_at          DateTime      @default(now())
+  sentCompliments     compliments[] @relation("SenderRelation") // Relação com compliments enviados
+  receivedCompliments compliments[] @relation("ReceiverRelation") // Relação com compliments recebidos
 }
 
 model tags {
@@ -25,4 +27,15 @@ model tags {
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
+}
+
+model compliments {
+  id            String   @id @default(uuid())
+  user_sender   String   @default(uuid())
+  user_receiver String   @default(uuid())
+  tag_id        String   @default(uuid())
+  message       String
+  created_at    DateTime @default(now())
+  sender        Users    @relation("SenderRelation", fields: [user_sender], references: [id]) // Chave estrangeira para user_sender
+  receiver      Users    @relation("ReceiverRelation", fields: [user_receiver], references: [id]) // Chave estrangeira para user_receiver
 }
