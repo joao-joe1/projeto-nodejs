@@ -1,6 +1,9 @@
-import { Prisma, PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 import { compare } from "bcryptjs"
 import { sign } from "jsonwebtoken"
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 interface InterfaceAuthRequest {
@@ -9,6 +12,7 @@ interface InterfaceAuthRequest {
 }
 
 const prisma = new PrismaClient()
+const JWT_Secret = process.env.JWT_SECRET as string
 
 class CreateAuthUserService {
 
@@ -29,12 +33,14 @@ class CreateAuthUserService {
         }
 
         //3° Gerar um token
-        const token = sign({
-            email: userExists.email
-        }, "8b539232a780cc04485574f87e73443e", {
-            subject: userExists.id,
-            expiresIn: "1d"
-        })
+        const token = sign(
+            { email: userExists.email },
+            JWT_Secret,
+            {
+                subject: userExists.id,
+                expiresIn: "1d"
+            }
+        )
 
         return token
     }
