@@ -10,7 +10,7 @@ class CreateTagService {
     async execute({ name }: InterfaceTagRequest) {
 
         if (!name) {
-            throw Error("Nome incorreto!")
+            throw Error("Nome incorreto! Certifique-se de fornecer um nome válido para a tag.")
         }
 
         const tagAlreadyExists = await prisma.tags.findFirst({
@@ -20,7 +20,7 @@ class CreateTagService {
         })
 
         if (tagAlreadyExists) {
-            throw Error("Essa tag já existe!")
+            throw Error("Essa tag já existe! Escolha um nome único para a tag.")
         }
 
         const createTag = await prisma.tags.create({
