@@ -12,7 +12,7 @@ const prisma = new PrismaClient()
 
 class CreateUserService {
 
-    async execute({ name, email, admin, password }: InterfaceUserRequest) {
+    async execute({ name, email, admin = false, password }: InterfaceUserRequest) {
         if (!email) {
             throw new Error("Email incorreto. Certifique-se de fornecer um email válido.")
         }
