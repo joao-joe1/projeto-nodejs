@@ -23,10 +23,11 @@ model Users {
 }
 
 model tags {
-  id         String   @id @default(uuid())
-  name       String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  id               String        @id @default(uuid())
+  name             String
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @default(now())
+  tagIdCompliments compliments[] @relation("TagIdRelation") // Relação com compliments recebidos
 }
 
 model compliments {
@@ -38,4 +39,5 @@ model compliments {
   created_at    DateTime @default(now())
   sender        Users    @relation("SenderRelation", fields: [user_sender], references: [id]) // Chave estrangeira para user_sender
   receiver      Users    @relation("ReceiverRelation", fields: [user_receiver], references: [id]) // Chave estrangeira para user_receiver
+  fktag_id      tags     @relation("TagIdRelation", fields: [tag_id], references: [id]) // Chave estrangeira para tag_id
 }
