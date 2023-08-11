@@ -12,9 +12,10 @@ const createAuthUserController = new CreateAuthUserController();
 const createTagController = new CreateTagController();
 const createComplimentController = new CreateComplimentController();
 
+// Rotas
 router.post('/users', createUserController.handle)
-router.post('/tags', isAuthenticated, verifyAdminStatus, createTagController.handle)
 router.post('/login', createAuthUserController.handle)
-router.post('/compliments', createComplimentController.handle)
+router.post('/tags', isAuthenticated, verifyAdminStatus, createTagController.handle)
+router.post('/compliments', isAuthenticated, createComplimentController.handle)
 
 export { router }
