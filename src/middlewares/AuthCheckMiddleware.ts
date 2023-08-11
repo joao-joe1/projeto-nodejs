@@ -4,6 +4,7 @@ import { verify } from "jsonwebtoken";
 
 export function isAuthenticated(request: Request, response: Response, next: NextFunction) {
 
+    const JWT_Secret = process.env.JWT_SECRET as string
     const authToken = request.headers.authorization as string
 
     if (!authToken) {
@@ -15,7 +16,7 @@ export function isAuthenticated(request: Request, response: Response, next: Next
     const token = authToken.split(' ')[1]
 
     try {
-        const decodedToken = verify(token, 'a3e30a5fa0bc7e36c614d0a072e712e7')
+        const decodedToken = verify(token, JWT_Secret)
         next();
     } catch (error) {
         return response.status(401).json({
