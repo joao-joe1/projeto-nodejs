@@ -1,6 +1,6 @@
-import { Response, Request, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
-export function ensureAdmin(request: Request, response: Response, next: NextFunction) {
+export function verifyAdminStatus(request: Request, response: Response, next: NextFunction) {
     // Verificar se usuario é um administrador antes de prosseguir.
     const admin = true;
 

@@ -1,4 +1,4 @@
-import { Response, Request } from "express"
+import { Request, Response } from "express"
 import { CreateComplimentService } from "../services/complimentsService"
 
 class CreateComplimentController {
