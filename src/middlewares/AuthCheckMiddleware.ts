@@ -27,6 +27,4 @@ export function isAuthenticated(request: Request, response: Response, next: Next
             error: 'Acesso não autorizado. Token de autenticação inválido.'
         })
     }
-
-    next();
 }
