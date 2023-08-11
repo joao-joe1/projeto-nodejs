@@ -1,6 +1,9 @@
 import { Response, Request, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 
+interface InterfaceAuthMiddleware {
+    sub: string
+}
 
 export function isAuthenticated(request: Request, response: Response, next: NextFunction) {
 
@@ -16,7 +19,8 @@ export function isAuthenticated(request: Request, response: Response, next: Next
     const token = authToken.split(' ')[1]
 
     try {
-        const decodedToken = verify(token, JWT_Secret)
+        const { sub } = verify(token, JWT_Secret) as InterfaceAuthMiddleware
+        request.user_id = sub
         next();
     } catch (error) {
         return response.status(401).json({
