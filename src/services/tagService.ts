@@ -1,13 +1,12 @@
 import { PrismaClient } from "@prisma/client"
-
 const prisma = new PrismaClient();
 
-interface InterfaceTagRequest {
+interface ITagRequest {
     name: string,
 }
 
 class CreateTagService {
-    async execute({ name }: InterfaceTagRequest) {
+    async execute({ name }: ITagRequest) {
 
         if (!name) {
             throw Error("Nome incorreto! Certifique-se de fornecer um nome válido para a tag.")

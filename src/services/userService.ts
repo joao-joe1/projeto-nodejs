@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 import { hash } from 'bcryptjs'
 
-interface InterfaceUserRequest {
+interface IUserRequest {
     name: string,
     email: string,
     admin?: boolean,
@@ -12,7 +12,7 @@ const prisma = new PrismaClient()
 
 class CreateUserService {
 
-    async execute({ name, email, admin = false, password }: InterfaceUserRequest) {
+    async execute({ name, email, admin = false, password }: IUserRequest) {
         if (!email) {
             throw new Error("Email incorreto. Certifique-se de fornecer um email válido.")
         }
@@ -42,4 +42,4 @@ class CreateUserService {
     }
 }
 
-export { CreateUserService, InterfaceUserRequest };
+export { CreateUserService };

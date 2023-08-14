@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client"
-
 const prisma = new PrismaClient()
 
-interface InterfaceComplimentRequest {
+interface IComplimentRequest {
     tag_id: string,
     user_sender: string,
     user_receiver: string,
@@ -11,7 +10,7 @@ interface InterfaceComplimentRequest {
 
 
 class CreateComplimentService {
-    async execute({ tag_id, user_sender, user_receiver, message }: InterfaceComplimentRequest) {
+    async execute({ tag_id, user_sender, user_receiver, message }: IComplimentRequest) {
 
         if (user_receiver === user_sender) {
             throw new Error("O remetente e o destinatário não podem ser os mesmos usuários.")

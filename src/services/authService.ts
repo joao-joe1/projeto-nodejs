@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-interface InterfaceAuthRequest {
+interface IAuthRequest {
     email: string,
     password: string,
 }
@@ -16,7 +16,7 @@ const JWT_Secret = process.env.JWT_SECRET as string
 
 class CreateAuthUserService {
 
-    async execute({ email, password }: InterfaceAuthRequest) {
+    async execute({ email, password }: IAuthRequest) {
         //1° Verificar se email existe.
         const userExists = await prisma.users.findUnique({
             where: {
