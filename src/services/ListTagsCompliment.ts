@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Expose } from "class-transformer";
+import { Expose, classToPlain } from "class-transformer";
 
 const prisma = new PrismaClient();
 
@@ -26,7 +26,7 @@ class ListTagsCompliment {
     async execute() {
         const tagsCompliment = await prisma.tags.findMany();
         const exposedTags = tagsCompliment.map(tag => new TagCompliment(tag));
-        return exposedTags;
+        return classToPlain(exposedTags)
     }
 }
 
