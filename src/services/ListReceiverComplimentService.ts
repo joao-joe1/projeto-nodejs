@@ -6,7 +6,7 @@ interface IComplimentReceiverRequest {
 }
 
 class ListReceiverReceiverCompliment {
-    async execute({ }) {
+    async execute({ id }: IComplimentReceiverRequest) {
 
     }
 }

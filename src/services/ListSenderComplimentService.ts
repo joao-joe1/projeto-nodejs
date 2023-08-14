@@ -7,8 +7,28 @@ interface IComplimentSenderRequest {
 }
 
 class ListSenderReceiverCompliment {
-    async execute({ }) {
 
+    async execute({ id }: IComplimentSenderRequest) {
+
+        const user = await prisma.users.findUnique({
+            where: { id }
+        })
+
+        if (!user) {
+            throw new Error('ID de usuário inválido ou ausente.')
+        }
+
+        const sentCompliments = await prisma.compliments.findMany({
+            where: {
+                user_sender: id
+            },
+            include: {
+                receiver: true,
+                fktag_id: true,
+            }
+        })
+
+        return sentCompliments;
     }
 }
 
