@@ -4,7 +4,9 @@ import { ListReceiverReceiverCompliment } from "../services/ListReceiverComplime
 class GetReceiverController {
     async handle(request: Request, response: Response) {
         const { user_id } = request;
-        const listReceiverReceiverCompliment = new ListReceiverReceiverCompliment();
+        const listReceiverCompliment = new ListReceiverReceiverCompliment();
+        const getReceiverCompliment = listReceiverCompliment.execute({ id: user_id });
+        return response.status(200).json({ getReceiverCompliment })
     }
 }
 
