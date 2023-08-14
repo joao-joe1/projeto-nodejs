@@ -8,7 +8,7 @@ interface IComplimentReceiverRequest {
 class ListReceiverReceiverCompliment {
     async execute({ id }: IComplimentReceiverRequest) {
 
-        const receiverCompliment = prisma.compliments.findMany({
+        const receiverCompliment = await prisma.compliments.findMany({
             where: {
                 user_sender: id
             },

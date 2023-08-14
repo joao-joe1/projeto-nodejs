@@ -5,7 +5,7 @@ class GetReceiverController {
     async handle(request: Request, response: Response) {
         const { user_id } = request;
         const listReceiverCompliment = new ListReceiverReceiverCompliment();
-        const getReceiverCompliment = listReceiverCompliment.execute({ id: user_id });
+        const getReceiverCompliment = await listReceiverCompliment.execute({ id: user_id });
         return response.status(200).json({ getReceiverCompliment })
     }
 }
