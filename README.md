@@ -10,9 +10,8 @@ Um projeto Backend para criar e gerenciar uma API RESTful de usuários. A API pe
 ## Funcionalidades
 
 - Criação de novos usuários
-- Consulta de usuários por ID ou e-mail
+- Consulta de usuários por ID
 - Atualização de informações do usuário
-- Remoção de usuários existentes
 - Enviar uma reação à um usuário
 
 ## Pré-requisitos
