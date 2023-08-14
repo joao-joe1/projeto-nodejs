@@ -10,7 +10,7 @@ class ListReceiverReceiverCompliment {
 
         const receiverCompliment = await prisma.compliments.findMany({
             where: {
-                user_sender: id
+                user_receiver: id
             },
             include: {
                 sender: true,
