@@ -6,7 +6,7 @@ interface IComplimentSenderRequest {
     id: string,
 }
 
-class ListSenderReceiverCompliment {
+class ListSenderCompliment {
 
     async execute({ id }: IComplimentSenderRequest) {
 
@@ -24,4 +24,4 @@ class ListSenderReceiverCompliment {
     }
 }
 
-export { ListSenderReceiverCompliment }
+export { ListSenderCompliment }

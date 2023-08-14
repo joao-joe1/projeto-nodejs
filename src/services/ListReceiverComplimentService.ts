@@ -5,7 +5,7 @@ interface IComplimentReceiverRequest {
     id: string,
 }
 
-class ListReceiverReceiverCompliment {
+class ListReceiverCompliment {
     async execute({ id }: IComplimentReceiverRequest) {
 
         const receiverCompliment = await prisma.compliments.findMany({
@@ -22,4 +22,4 @@ class ListReceiverReceiverCompliment {
     }
 }
 
-export { ListReceiverReceiverCompliment }
+export { ListReceiverCompliment }
