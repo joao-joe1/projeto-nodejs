@@ -10,15 +10,12 @@ export async function verifyAdminStatus(request: Request, response: Response, ne
         const user = await prisma.users.findUnique({
             where: { id: user_id }
         })
-        if (!user) {
-            return response.status(401).end()
+        if (!user || !user.admin) {
+            return response.status(403).json({
+                error: 'Não autorizado. Somente administradores podem acessar esta rota.'
+            })
         }
-        if (user.admin) {
-            return next();
-        }
-        return response.status(401).json({
-            error: 'Não autorizado. Somente administradores podem acessar esta rota.'
-        })
+        next();
     } catch (error) {
         console.error(error)
         return response.status(500).json({
